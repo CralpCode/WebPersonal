@@ -4,12 +4,11 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/ui',
     'nuxt-svgo',
-    '@vueuse/motion/nuxt',
+    '@vueuse/motion/nuxt'
   ],
 
-  svgo: {
-    autoImportPath: '../public/icons/',
-    defaultImport: 'component',
+  devtools: {
+    enabled: true
   },
 
   app: {
@@ -20,12 +19,8 @@ export default defineNuxtConfig({
         lang: 'es'
       },
       charset: 'utf-8',
-      viewport: 'width=device-width, initial-scale=1',
+      viewport: 'width=device-width, initial-scale=1'
     }
-  },
-
-  devtools: {
-    enabled: true
   },
 
   css: ['~/assets/css/main.css'],
@@ -43,5 +38,10 @@ export default defineNuxtConfig({
         braceStyle: '1tbs'
       }
     }
+  },
+
+  svgo: {
+    autoImportPath: '../public/icons/',
+    defaultImport: 'component'
   }
 })

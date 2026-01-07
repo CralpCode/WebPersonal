@@ -47,16 +47,18 @@ const items = computed<NavigationMenuItem[]>(() => [
     }
   }
 ])
-
 </script>
 
 <template>
-  <UHeader v-model:open="mobileMenuOpen" :links="items" :toggle="{
-    color: 'primary',
-    variant: 'subtle',
-    class: 'rounded-full'
-  }">
-
+  <UHeader
+    v-model:open="mobileMenuOpen"
+    :links="items"
+    :toggle="{
+      color: 'primary',
+      variant: 'subtle',
+      class: 'rounded-full'
+    }"
+  >
     <template #title>
       <div class="font-bold text-xl flex items-center gap-2">
         <SvgoCralpCodeEmoji class="w-10 h-10 rounded-full" />
@@ -64,20 +66,35 @@ const items = computed<NavigationMenuItem[]>(() => [
       </div>
     </template>
 
-    <UNavigationMenu :items="items" class="[&_button]:cursor-pointer" />
-
+    <UNavigationMenu
+      :items="items"
+      class="[&_button]:cursor-pointer"
+    />
 
     <template #right>
       <UColorModeButton />
 
-      <UTooltip text="Open on GitHub" :kbds="['meta', 'G']">
-        <UButton color="primary" variant="ghost" to="https://github.com/CralpCode" target="_blank"
-          icon="i-simple-icons-github" aria-label="GitHub" />
+      <UTooltip
+        text="Open on GitHub"
+        :kbds="['meta', 'G']"
+      >
+        <UButton
+          color="primary"
+          variant="ghost"
+          to="https://github.com/CralpCode"
+          target="_blank"
+          icon="i-simple-icons-github"
+          aria-label="GitHub"
+        />
       </UTooltip>
     </template>
 
     <template #body>
-      <UNavigationMenu :items="items" orientation="vertical" class="[&_button]:cursor-pointer -mx-2.5" />
+      <UNavigationMenu
+        :items="items"
+        orientation="vertical"
+        class="[&_button]:cursor-pointer -mx-2.5"
+      />
     </template>
   </UHeader>
 </template>

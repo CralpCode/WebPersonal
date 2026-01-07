@@ -3,16 +3,15 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: ["main"]
-    
-defaults:
-  run:
-    working-directory: ./WebPersonal 
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: List files
+        run: ls -R
       
       - uses: pnpm/action-setup@v3
         with:
@@ -23,7 +22,7 @@ jobs:
           node-version: '20'
       
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build
         run: pnpm generate 
@@ -31,7 +30,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./WebPersonal/.output/public 
+          path: .output/public
 
   deploy:
     needs: build

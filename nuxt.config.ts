@@ -19,7 +19,10 @@ export default defineNuxtConfig({
         lang: 'es'
       },
       charset: 'utf-8',
-      viewport: 'width=device-width, initial-scale=1'
+      viewport: 'width=device-width, initial-scale=1',
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/WebPersonal/favicon.ico' }
+      ]
     }
   },
 

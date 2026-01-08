@@ -21,7 +21,7 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       meta: [
-        { name: 'google-site-verification', content: 'googlecf253da01e2936cf.html' }
+        { name: 'google-site-verification', content: 'googlecf253da01e2936cf' }
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' }

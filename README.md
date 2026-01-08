@@ -18,14 +18,14 @@ Este proyecto ha sido construido utilizando tecnologías modernas de desarrollo 
 
 ## Si quieres ver el resultado
 
-Puedes visitar la página web en [https://cralopcode.github.io/PaginaWebPersonal/](https://cralopcode.github.io/PaginaWebPersonal/).
+Puedes visitar la página web en [cralpcode.me](https://cralpcode.me).
 
 ## 📋 Requisitos Previos
 
 Asegúrate de tener instalado lo siguiente en tu entorno de desarrollo:
 
 -   **Node.js**: Versión v24.11.1 o superior.
--   **pnpm**: Gestor de paquetes recomendado (v10.23.0 o superior).
+-   **pnpm**: Gestor de paquetes recomendado (v9.15.4 o superior).
 
 ## 🛠️ Instalación y Configuración
 
@@ -34,7 +34,7 @@ Sigue estos pasos para ejecutar el proyecto localmente:
 1.  **Clonar el repositorio**:
 
     ```bash
-    git clone https://github.com/CralpCode/PaginaWebPersonal.git
+    git clone https://github.com/CralpCode/WebPersonal.git
     cd WebPersonal
     ```
 

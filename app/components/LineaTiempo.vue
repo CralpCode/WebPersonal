@@ -306,7 +306,7 @@ const timelineItems = ref<TimelineItem[]>([
         label: 'Juego de Laberinto',
         icon: 'i-lucide-map',
         description: 'Juego de lógica y recorrido desarrollado en Java puro.',
-        image: '/images/laberinto.png',
+        image: '/images/Laberinto.png',
         to: 'https://github.com/cralpcode/juego_de_-laberinto_en_java',
         technologies: ['Java'],
         isOpen: true,

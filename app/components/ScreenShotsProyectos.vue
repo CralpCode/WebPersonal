@@ -3,7 +3,9 @@ const config = useRuntimeConfig()
 const getImageUrl = (path: string) => {
   if (path.startsWith('http')) return path
   const cleanPath = path.startsWith('/') ? path.substring(1) : path
-  return `${config.app.baseURL}${cleanPath}`
+  const fullPath = `${config.app.baseURL}${cleanPath}`
+  console.log('Image URL generate:', path, '->', fullPath)
+  return fullPath
 }
 </script>
 

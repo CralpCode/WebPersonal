@@ -3,8 +3,13 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/ui',
     'nuxt-svgo',
-    '@vueuse/motion/nuxt'
+    '@vueuse/motion/nuxt',
+    '@nuxtjs/sitemap'
   ],
+
+  site: {
+    url: 'https://cralpcode.me',
+  },
 
   devtools: {
     enabled: true
@@ -27,6 +32,7 @@ export default defineNuxtConfig({
       ]
     }
   },
+
 
   css: ['~/assets/css/main.css'],
 

@@ -418,6 +418,13 @@ const filteredTimeline = computed(() => {
   }).filter(item => item.projects.length > 0)
 })
 
+const config = useRuntimeConfig()
+const getImageUrl = (path: string) => {
+  if (path.startsWith('http')) return path
+  const cleanPath = path.startsWith('/') ? path.substring(1) : path
+  return `${config.app.baseURL}${cleanPath}`
+}
+
 const emit = defineEmits<{
   (e: 'select', category: string): void
 }>()
@@ -425,134 +432,87 @@ const emit = defineEmits<{
 
 <template>
   <div
-    class="w-full max-w-full lg:max-w-6xl md:max-w-3xl xs:max-w-full sm:max-w-full md:mx-auto py-10 px-4 overflow-x-hidden"
-  >
+    class="w-full max-w-full lg:max-w-6xl md:max-w-3xl xs:max-w-full sm:max-w-full md:mx-auto py-10 px-4 overflow-x-hidden">
     <div class="relative w-full max-w-xs mx-auto mb-10 z-30">
       <button
         class="w-full flex items-center justify-between px-4 py-3 bg- backdrop-blur-sm border border-green-500/30 rounded-xl text-gray-200 hover:border-green-500 hover:shadow-[0_0_15px_rgba(34,197,94,0.2)] transition-all duration-300 group"
-        @click="isDropdownOpen = !isDropdownOpen"
-      >
+        @click="isDropdownOpen = !isDropdownOpen">
         <div class="flex items-center gap-2">
           <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold">Filtrar Proyectos
             por:</span>
           <span class="text-green-400 font-bold">{{ activeCategory }}</span>
         </div>
 
-        <Icon
-          name="i-lucide-chevron-down"
+        <Icon name="i-lucide-chevron-down"
           class="w-5 h-5 text-gray-500 group-hover:text-green-400 transition-transform duration-300"
-          :class="{ 'rotate-180': isDropdownOpen }"
-        />
+          :class="{ 'rotate-180': isDropdownOpen }" />
       </button>
 
-      <Transition
-        enter-active-class="transition duration-200 ease-out"
+      <Transition enter-active-class="transition duration-200 ease-out"
         enter-from-class="transform scale-95 opacity-0 -translate-y-2"
         enter-to-class="transform scale-100 opacity-100 translate-y-0"
         leave-active-class="transition duration-150 ease-in"
         leave-from-class="transform scale-100 opacity-100 translate-y-0"
-        leave-to-class="transform scale-95 opacity-0 -translate-y-2"
-      >
-        <div
-          v-if="isDropdownOpen"
-          class="absolute top-full left-0 right-0 mt-2 bg-old-neutral-800 border border-green-500/30 rounded-xl shadow-2xl overflow-hidden max-h-80 overflow-y-auto custom-scrollbar"
-        >
-          <button
-            v-for="category in categories"
-            :key="category"
+        leave-to-class="transform scale-95 opacity-0 -translate-y-2">
+        <div v-if="isDropdownOpen"
+          class="absolute top-full left-0 right-0 mt-2 bg-old-neutral-800 border border-green-500/30 rounded-xl shadow-2xl overflow-hidden max-h-80 overflow-y-auto custom-scrollbar">
+          <button v-for="category in categories" :key="category"
             class="w-full text-left px-4 py-3 text-sm font-medium transition-colors border-b border-gray-800 last:border-0 hover:bg-green-500/10 hover:text-green-400 flex items-center justify-between"
             :class="activeCategory === category ? 'text-green-400 bg-green-500/5' : 'text-gray-400'"
-            @click="selectCategory(category)"
-          >
+            @click="selectCategory(category)">
             {{ category }}
 
-            <Icon
-              v-if="activeCategory === category"
-              name="i-lucide-check"
-              class="w-4 h-4 text-green-500"
-            />
+            <Icon v-if="activeCategory === category" name="i-lucide-check" class="w-4 h-4 text-green-500" />
           </button>
         </div>
       </Transition>
 
-      <div
-        v-if="isDropdownOpen"
-        class="fixed inset-0 z-[-1]"
-        @click="isDropdownOpen = false"
-      />
+      <div v-if="isDropdownOpen" class="fixed inset-0 z-[-1]" @click="isDropdownOpen = false" />
     </div>
     <div class="relative border-l border-green-200 dark:border-green-800 ml-3 space-y-12">
-      <div
-        v-for="(item, index) in filteredTimeline"
-        :key="index"
-        class="relative pl-8"
-      >
+      <div v-for="(item, index) in filteredTimeline" :key="index" class="relative pl-8">
         <div
-          class="absolute -left-1.5 top-1.5 h-3 w-3 rounded-full border border-white dark:border-gray-900 bg-green-500 ring-4 ring-green-100 dark:ring-green-900"
-        />
+          class="absolute -left-1.5 top-1.5 h-3 w-3 rounded-full border border-white dark:border-gray-900 bg-green-500 ring-4 ring-green-100 dark:ring-green-900" />
 
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
           <span
-            class="text-sm font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 px-2 py-0.5 rounded"
-          >
+            class="text-sm font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 px-2 py-0.5 rounded">
             {{ item.date }}
           </span>
         </div>
 
         <button
           class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-100 dark:hover:bg-green-800/50 transition-colors rounded-2xl border border-green-200 dark:border-green-800"
-          @click="toggleProject(item)"
-        >
+          @click="toggleProject(item)">
           <div class="flex items-center gap-3 justify-between overflow-hidden w-full">
             <div class="flex justify-between gap-3">
-              <Icon
-                :name="item.icon || ''"
-                class="text-xl shrink-0 text-gray-500"
-              />
+              <Icon :name="item.icon || ''" class="text-xl shrink-0 text-gray-500" />
               <span class="font-semibold text-gray-900 dark:text-white truncate">
                 {{ item.title || '' }}
               </span>
             </div>
             <div>
-              <Icon
-                name="i-lucide-chevron-down"
-                class="w-5 h-5 text-gray-400 transition-transform duration-300"
-                :class="{ 'rotate-180': !item.isOpen }"
-              />
+              <Icon name="i-lucide-chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-300"
+                :class="{ 'rotate-180': !item.isOpen }" />
             </div>
           </div>
         </button>
 
-        <div
-          v-show="item.isOpen"
-          class="space-y-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4 transition-all duration-300"
-        >
-          <div
-            v-for="(project, pIndex) in item.projects"
-            :key="pIndex"
-          >
+        <div v-show="item.isOpen"
+          class="space-y-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4 transition-all duration-300">
+          <div v-for="(project, pIndex) in item.projects" :key="pIndex">
             <div
-              class="bg-gray-50 dark:bg-green-900/50 rounded-xl border border-gray-200 dark:border-green-800 overflow-hidden transition-all duration-300 h-full"
-            >
+              class="bg-gray-50 dark:bg-green-900/50 rounded-xl border border-gray-200 dark:border-green-800 overflow-hidden transition-all duration-300 h-full">
               <div class="border-t border-gray-200 dark:border-green-800 h-full">
                 <div class="p-4 space-y-4 h-full flex flex-col">
-                  <a
-                    :href="project.to"
-                    target="_blank"
-                    class="block group grow"
-                  >
+                  <a :href="project.to" target="_blank" class="block group grow">
                     <div
-                      class="relative aspect-video w-full overflow-hidden rounded-lg border border-gray-200 dark:border-green-800 mb-3"
-                    >
-                      <img
-                        :src="project.image"
-                        :alt="project.label"
-                        class="object-fill w-full h-full transition-transform duration-500 group-hover:scale-105"
-                      >
+                      class="relative aspect-video w-full overflow-hidden rounded-lg border border-gray-200 dark:border-green-800 mb-3">
+                      <img :src="getImageUrl(project.image)" :alt="project.label"
+                        class="object-fill w-full h-full transition-transform duration-500 group-hover:scale-105">
                     </div>
                     <h3
-                      class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-green-600 transition-colors"
-                    >
+                      class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-green-600 transition-colors">
                       {{ project.label }}
                     </h3>
                     <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
@@ -560,21 +520,13 @@ const emit = defineEmits<{
                     </p>
                   </a>
 
-                  <div
-                    class="flex flex-wrap gap-2 pt-3 border-t border-gray-100 dark:border-green-800 mt-auto"
-                  >
+                  <div class="flex flex-wrap gap-2 pt-3 border-t border-gray-100 dark:border-green-800 mt-auto">
                     <span class="text-xs font-semibold text-gray-500 mr-1 self-center">Stack:</span>
-                    <span
-                      v-for="techName in project.technologies"
-                      :key="techName"
+                    <span v-for="techName in project.technologies" :key="techName"
                       class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-medium ring-1 ring-inset"
-                      :class="techConfig[techName]?.class"
-                    >
-                      <Icon
-                        v-if="techConfig[techName]"
-                        :name="techConfig[techName].icon"
-                        class="w-3.5 h-3.5 bg-current!"
-                      />
+                      :class="techConfig[techName]?.class">
+                      <Icon v-if="techConfig[techName]" :name="techConfig[techName].icon"
+                        class="w-3.5 h-3.5 bg-current!" />
                       {{ techName }}
                     </span>
                   </div>

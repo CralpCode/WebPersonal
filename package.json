@@ -8,7 +8,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "generate": "nuxt generate"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.74",
@@ -26,5 +27,14 @@
     "typescript": "^5.9.3",
     "vue-tsc": "^3.1.5"
   },
-  "packageManager": "pnpm@10.23.0"
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "@parcel/watcher",
+      "@tailwindcss/oxide",
+      "esbuild",
+      "unrs-resolver",
+      "vue-demi"
+    ]
+  },
+  "packageManager": "pnpm@9.15.4"
 }

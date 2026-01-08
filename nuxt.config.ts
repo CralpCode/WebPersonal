@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   },
 
   app: {
-    baseURL: '/WebPersonal/',
+    baseURL: '/',
     buildAssetsDir: 'assets',
     head: {
       htmlAttrs: {

@@ -434,7 +434,8 @@ const emit = defineEmits<{
   <div
     class="w-full max-w-full lg:max-w-6xl md:max-w-3xl xs:max-w-full sm:max-w-full md:mx-auto py-10 px-4 overflow-x-hidden">
     <div class="relative w-full max-w-xs mx-auto mb-10 z-30">
-      <button
+      <button id="category-menu-button" aria-haspopup="true" :aria-expanded="isDropdownOpen"
+        aria-controls="category-dropdown-menu"
         class="w-full flex items-center justify-between px-4 py-3 bg- backdrop-blur-sm border border-green-500/30 rounded-xl text-gray-200 hover:border-green-500 hover:shadow-[0_0_15px_rgba(34,197,94,0.2)] transition-all duration-300 group"
         @click="isDropdownOpen = !isDropdownOpen">
         <div class="flex items-center gap-2">
@@ -454,7 +455,7 @@ const emit = defineEmits<{
         leave-active-class="transition duration-150 ease-in"
         leave-from-class="transform scale-100 opacity-100 translate-y-0"
         leave-to-class="transform scale-95 opacity-0 -translate-y-2">
-        <div v-if="isDropdownOpen"
+        <div v-if="isDropdownOpen" id="category-dropdown-menu" role="listbox" aria-labelledby="category-menu-button"
           class="absolute top-full left-0 right-0 mt-2 bg-old-neutral-800 border border-green-500/30 rounded-xl shadow-2xl overflow-hidden max-h-80 overflow-y-auto custom-scrollbar">
           <button v-for="category in categories" :key="category"
             class="w-full text-left px-4 py-3 text-sm font-medium transition-colors border-b border-gray-800 last:border-0 hover:bg-green-500/10 hover:text-green-400 flex items-center justify-between"
@@ -481,7 +482,7 @@ const emit = defineEmits<{
           </span>
         </div>
 
-        <button
+        <button :aria-expanded="item.isOpen" :aria-controls="'item-projects-' + item.date"
           class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-100 dark:hover:bg-green-800/50 transition-colors rounded-2xl border border-green-200 dark:border-green-800"
           @click="toggleProject(item)">
           <div class="flex items-center gap-3 justify-between overflow-hidden w-full">
@@ -498,7 +499,7 @@ const emit = defineEmits<{
           </div>
         </button>
 
-        <div v-show="item.isOpen"
+        <div v-show="item.isOpen" :id="'item-projects-' + item.date"
           class="space-y-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4 transition-all duration-300">
           <div v-for="(project, pIndex) in item.projects" :key="pIndex">
             <div
@@ -526,7 +527,7 @@ const emit = defineEmits<{
                     <span v-for="techName in project.technologies" :key="techName"
                       class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-medium ring-1 ring-inset"
                       :class="techConfig[techName]?.class">
-                      <Icon v-if="techConfig[techName]" :name="techConfig[techName].icon"
+                      <Icon v-if="techConfig[techName]" :name="techConfig[techName].icon" aria-hidden="true"
                         class="w-3.5 h-3.5 bg-current!" />
                       {{ techName }}
                     </span>

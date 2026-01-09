@@ -114,30 +114,20 @@ const certifications = ref([
 </script>
 
 <template>
-  <h2
-    id="certificados"
-    class="text-4xl sm:text-xl md:text-2xl lg:text-4xl xl:text-6xl font-extrabold text-center text-transparent bg-clip-text bg-linear-to-r from-green-400 to-blue-600 mb-8 md:mb-12"
-  >
+  <h2 id="certificados"
+    class="text-4xl sm:text-xl md:text-2xl lg:text-4xl xl:text-6xl font-extrabold text-center text-transparent bg-clip-text bg-linear-to-r from-green-400 to-blue-600 mb-8 md:mb-12">
     Certificados
   </h2>
   <div
-    class="w-11/12 sm:w-11/12 md:w-xl lg:w-6xl xl:w-6xl grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  mx-auto mb-10"
-  >
-    <UCard
-      v-for="(cert, index) in certifications"
-      :key="index"
-      class="group hover:ring-2 hover:ring-green-500/50 transition-all duration-300  border border-gray-200 dark:border-gray-800 backdrop-blur-sm"
-    >
+    class="w-11/12 sm:w-11/12 md:w-xl lg:w-6xl xl:w-6xl grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  mx-auto mb-10">
+    <UCard v-for="(cert, index) in certifications" :key="index"
+      class="group hover:ring-2 hover:ring-green-500/50 transition-all duration-300  border border-gray-200 dark:border-gray-800 backdrop-blur-sm">
       <template #header>
         <div class="flex items-start gap-4">
           <div
             class="h-14 w-14 shrink-0 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 ring-1"
-            :class="cert.color"
-          >
-            <Icon
-              :name="cert.icon"
-              class="text-3xl"
-            />
+            :class="cert.color">
+            <Icon :name="cert.icon" class="text-3xl" />
           </div>
 
           <div>
@@ -153,53 +143,29 @@ const certifications = ref([
 
       <div class="space-y-4">
         <div class="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1.5">
-          <Icon
-            name="i-lucide-calendar"
-            class="w-3.5 h-3.5"
-          />
+          <Icon name="i-lucide-calendar" class="w-3.5 h-3.5" />
           <span>{{ cert.date }}</span>
         </div>
 
         <div class="flex flex-wrap gap-1.5">
-          <span
-            class="text-xl xl:text-md lg:text-md md:text-sm sm:text-xs text-gray-400 self-center mr-1"
-          >Stack:</span>
-          <span
-            v-for="techName in cert.skills"
-            :key="techName"
+          <span class="text-xl xl:text-md lg:text-md md:text-sm sm:text-xs text-gray-400 self-center mr-1">Stack:</span>
+          <span v-for="techName in cert.skills" :key="techName"
             class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs font-medium ring-1 ring-inset"
-            :class="techConfig[techName]?.class"
-          >
+            :class="techConfig[techName]?.class">
 
-            <Icon
-              v-if="techConfig[techName]"
-              :name="techConfig[techName].icon"
-              class="w-3.5 h-3.5 bg-current!"
-            />
+            <Icon v-if="techConfig[techName]" :name="techConfig[techName].icon" aria-hidden="true"
+              class="w-3.5 h-3.5 bg-current!" />
 
             {{ techName }}
           </span>
         </div>
       </div>
 
-      <template
-        v-if="cert.credentialUrl"
-        #footer
-      >
-        <UButton
-          :to="cert.credentialUrl"
-          target="_blank"
-          size="xs"
-          variant="ghost"
-          color="primary"
-          block
-          class="hover:bg-green-50 dark:hover:bg-green-900/20 hover:text-green-600 dark:hover:text-green-400 transition-colors"
-        >
+      <template v-if="cert.credentialUrl" #footer>
+        <UButton :to="cert.credentialUrl" target="_blank" size="xs" variant="ghost" color="primary" block
+          class="hover:bg-green-50 dark:hover:bg-green-900/20 hover:text-green-600 dark:hover:text-green-400 transition-colors">
           <template #leading>
-            <Icon
-              name="i-lucide-external-link"
-              class="w-4 h-4"
-            />
+            <Icon name="i-lucide-external-link" class="w-4 h-4" />
           </template>
           Ver Credencial
         </UButton>

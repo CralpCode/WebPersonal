@@ -44,6 +44,14 @@ export default defineNuxtConfig({
     '/**': { headers: { 'cache-control': 'public, max-age=86400' } }
   },
 
+  nitro: {
+    routeRules: {
+      '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+      '/**': { headers: { 'cache-control': 'public, max-age=86400' } }
+    },
+    compressPublicAssets: true,
+  },
+
   compatibilityDate: '2025-01-15',
 
   eslint: {
@@ -58,5 +66,15 @@ export default defineNuxtConfig({
   svgo: {
     autoImportPath: '../public/icons/',
     defaultImport: 'component'
+  },
+
+  sourcemap: {
+    server: false,
+    client: true
+  },
+
+  image: {
+    domains: ['images.unsplash.com', 'unsplash.com'],
+    format: ['webp']
   }
 })

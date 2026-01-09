@@ -2,6 +2,8 @@
 @import "@nuxt/ui";
 
 @theme static {
+
+  --font-display: swap;
   --font-sans: 'Public Sans', sans-serif;
 
   --color-green-50: #EFFDF5;

@@ -20,6 +20,7 @@ export default defineNuxtConfig({
 
   app: {
     baseURL: '/',
+    buildAssetsDir: '/_nuxt/',
     //buildAssetsDir: 'assets',
     head: {
       htmlAttrs: {
@@ -49,7 +50,10 @@ export default defineNuxtConfig({
   nitro: {
     routeRules: {
       '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
-      '/**': { headers: { 'cache-control': 'public, max-age=86400' } }
+      '/**/*.png': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+      '/**/*.jpg': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+      '/**/*.js': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+      '/**/*.css': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } }
     },
     compressPublicAssets: true,
   },
@@ -86,6 +90,9 @@ export default defineNuxtConfig({
     format: ['webp']
   },
   vite: {
+    build: {
+      assetsInlineLimit: 4096,
+    },
     plugins: [
       ViteImageOptimizer({
         png: { quality: 80 },
@@ -95,5 +102,8 @@ export default defineNuxtConfig({
         avif: { quality: 70 },
       }),
     ],
+  },
+  features: {
+    inlineStyles: true
   },
 })

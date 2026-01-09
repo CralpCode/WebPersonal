@@ -4,7 +4,8 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     'nuxt-svgo',
     '@vueuse/motion/nuxt',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxt/image'
   ],
 
   site: {
@@ -17,7 +18,7 @@ export default defineNuxtConfig({
 
   app: {
     baseURL: '/',
-    buildAssetsDir: 'assets',
+    //buildAssetsDir: 'assets',
     head: {
       htmlAttrs: {
         lang: 'es'
@@ -37,7 +38,9 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   routeRules: {
-    '/': { prerender: true }
+    '/': { prerender: true },
+    '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    '/img/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
   },
 
   compatibilityDate: '2025-01-15',

@@ -14,7 +14,9 @@ useSeoMeta({
     <MenuNavBar />
 
     <UMain>
-      <NuxtPage />
+      <main id="main-content">
+        <NuxtPage />
+      </main>
     </UMain>
 
     <PieDePagina />

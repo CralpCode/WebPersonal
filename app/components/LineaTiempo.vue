@@ -508,8 +508,9 @@ const emit = defineEmits<{
                   <a :href="project.to" target="_blank" class="block group grow">
                     <div
                       class="relative aspect-video w-full overflow-hidden rounded-lg border border-gray-200 dark:border-green-800 mb-3">
-                      <img :src="getImageUrl(project.image)" :alt="project.label"
-                        class="object-fill w-full h-full transition-transform duration-500 group-hover:scale-105">
+                      <NuxtImg :src="getImageUrl(project.image)" :alt="project.label" format="webp"
+                        sizes="100vw sm:50vw md:400px"
+                        class="object-fill w-full h-full transition-transform duration-500 group-hover:scale-105" />
                     </div>
                     <h3
                       class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-green-600 transition-colors">

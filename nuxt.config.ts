@@ -41,6 +41,7 @@ export default defineNuxtConfig({
     '/': { prerender: true },
     '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
     '/img/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    '/**': { headers: { 'cache-control': 'public, max-age=86400' } }
   },
 
   compatibilityDate: '2025-01-15',

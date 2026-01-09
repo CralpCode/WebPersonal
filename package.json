@@ -26,7 +26,10 @@
     "@nuxtjs/sitemap": "^7.5.2",
     "eslint": "^9.39.1",
     "nuxt-svgo": "^4.2.6",
+    "sharp": "^0.34.5",
+    "svgo": "^4.0.0",
     "typescript": "^5.9.3",
+    "vite-plugin-image-optimizer": "^2.0.3",
     "vue-tsc": "^3.1.5"
   },
   "pnpm": {

@@ -1,3 +1,5 @@
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
+
 export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
@@ -74,7 +76,24 @@ export default defineNuxtConfig({
   },
 
   image: {
-    domains: ['images.unsplash.com', 'unsplash.com'],
+    domains: [
+      'images.unsplash.com',
+      'source.unsplash.com',
+      'i.pinimg.com',
+      'raw.githubusercontent.com',
+      'cralpcode.github.io'
+    ],
     format: ['webp']
-  }
+  },
+  vite: {
+    plugins: [
+      ViteImageOptimizer({
+        png: { quality: 80 },
+        jpeg: { quality: 75 },
+        jpg: { quality: 75 },
+        webp: { quality: 80 },
+        avif: { quality: 70 },
+      }),
+    ],
+  },
 })

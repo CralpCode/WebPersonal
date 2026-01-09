@@ -87,14 +87,15 @@ const socialLinks = [
             Competente en el diseño de bases de datos (SQL/NoSQL) y el desarrollo de interfaces con Vue.js y
             Angular.
           </p>
-
-          <UMarquee pause-on-hover class="hidden xl:inline-flex! lg:inline-flex! md:hidden! sm:hidden!">
-            <NuxtLink v-for="link in socialLinks" :key="link.icon" :to="link.to" :aria-label="link.label"
-              target="_blank" class="mx-4 block">
-              <UIcon :name="link.icon"
-                class="size-10 shrink-0 text-gray-500 hover:text-primary transition-colors duration-200" />
-            </NuxtLink>
-          </UMarquee>
+          <ClientOnly>
+            <UMarquee pause-on-hover class="hidden xl:inline-flex! lg:inline-flex! md:hidden! sm:hidden!">
+              <NuxtLink v-for="link in socialLinks" :key="link.icon" :to="link.to" :aria-label="link.label"
+                target="_blank" class="mx-4 block">
+                <UIcon :name="link.icon"
+                  class="size-10 shrink-0 text-gray-500 hover:text-primary transition-colors duration-200" />
+              </NuxtLink>
+            </UMarquee>
+          </ClientOnly>
         </UPageCard>
       </div>
       <div v-motion-slide-visible-right

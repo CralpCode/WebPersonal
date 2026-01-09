@@ -47,6 +47,32 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    prerender: {
+      routes: [
+        '/_ipx/f_webp/screens/proyecto1.png',
+        '/_ipx/f_webp/screens/proyecto2.png',
+        '/_ipx/f_webp/screens/proyecto3.png',
+        '/_ipx/f_webp/screens/proyecto4.png',
+        '/_ipx/f_webp/screens/proyecto5.png',
+        '/_ipx/f_webp/screens/proyecto6.png',
+        '/_ipx/f_webp/screens/proyecto7.png',
+        '/_ipx/f_webp/screens/proyecto8.png',
+        '/_ipx/f_webp/screens/proyecto8.png',
+        '/_ipx/f_webp/screens/proyecto9.png',
+        '/_ipx/f_webp/screens/proyecto10.png',
+        '/_ipx/f_webp/screens/proyecto11.png',
+        '/_ipx/f_webp/screens/proyecto12.png',
+        '/_ipx/f_webp/screens/proyecto13.png',
+        '/_ipx/f_webp/screens/proyecto14.png',
+        '/_ipx/f_webp/images/FeriaTecnologicaBioplastico.png',
+        '/_ipx/f_webp/images/CajaMeteorologica.png',
+        '/_ipx/f_webp/images/https:/images.unsplash.com/photo-1553406830-ef2513450d76%3Fq=80%26w=1000%26auto=format%26fit=crop.png',
+        '/_ipx/f_webp/images/Solitario.png',
+        '/_ipx/f_webp/images/Encriptador.png',
+        '/_ipx/f_webp/images/https:/raw.githubusercontent.com/CralpCode/Practica-1-de-Intro-a-Frontend/main/Abogabot/Formulario.png.png',
+
+      ],
+    },
     routeRules: {
       '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
       '/**': { headers: { 'cache-control': 'public, max-age=86400' } }

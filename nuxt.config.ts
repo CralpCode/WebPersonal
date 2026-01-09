@@ -66,10 +66,8 @@ export default defineNuxtConfig({
         '/_ipx/f_webp/screens/proyecto14.png',
         '/_ipx/f_webp/images/FeriaTecnologicaBioplastico.png',
         '/_ipx/f_webp/images/CajaMeteorologica.png',
-        '/_ipx/f_webp/images/https:/images.unsplash.com/photo-1553406830-ef2513450d76%3Fq=80%26w=1000%26auto=format%26fit=crop.png',
         '/_ipx/f_webp/images/Solitario.png',
         '/_ipx/f_webp/images/Encriptador.png',
-        '/_ipx/f_webp/images/https:/raw.githubusercontent.com/CralpCode/Practica-1-de-Intro-a-Frontend/main/Abogabot/Formulario.png.png',
 
       ],
     },
